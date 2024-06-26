@@ -5,10 +5,13 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center overflow-hidden flex-grow bg-[#FEFDF6] p-8">
-      <h1 className="text-4xl font-extrabold text-[#1E1C39] mb-4">
-        Welcome to POPCORNPICKS
-      </h1>
-      <p className="text-lg text-[#1E1C39] mb-6">
+      <div className="flex flex-row items-center gap-2">
+        <h1 className="text-4xl font-extrabold text-[#1E1C39] mb-4">
+          Welcome to POPCORNPICKS
+        </h1>
+        <img src="/movie-icon.png" alt="" className="mb-2" />
+      </div>
+      <p className="text-2xl text-[#1E1C39] mb-6">
         Find Your Next Favorite Film
       </p>
       <button

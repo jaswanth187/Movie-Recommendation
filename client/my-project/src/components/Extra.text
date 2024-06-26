@@ -1,0 +1,198 @@
+<h1 className="text-4xl font-extrabold text-[#1E1C39] mb-4">
+        Your Movie Preferences
+      </h1>
+      <p className="text-lg text-[#1E1C39] mb-2">Mood: {formData.mood}</p>
+      <p className="text-lg text-[#1E1C39] mb-2">
+        Occasion: {formData.occasion}
+      </p>
+      <p className="text-lg text-[#1E1C39] mb-2">Genre: {formData.genre}</p>
+
+
+OLD RESULTS CONTENT
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import MultiStepForm from "./components/MultiStepForm";
+import Results from "./Results";
+import Fetchingdata from "./components/Fetchingdata";
+
+const App = () => {
+  return (
+    <div className="flex flex-col min-h-screen h-full">
+      <Header />
+      <div className="flex-grow overflow-y-auto">
+        <Routes>
+          {/* <Route path="/" element={<Fetchingdata />} /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/get-started" element={<MultiStepForm />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+
+OLD APP.JS
+
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+// import Home from "./components/Home";
+import Login from "./components/Login";
+import MultiStepForm from "./components/MultiStepForm";
+import Results from "./Results";
+import Fetchingdata from "./components/Fetchingdata";
+
+const App = () => {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Routes>
+        {/* <Route path="/" element={<Fetchingdata />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/get-started" element={<MultiStepForm />} />
+        <Route path="/results" element={<Results />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default App;
+
+
+NEW APP.JS 
+
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import MultiStepForm from "./components/MultiStepForm";
+import Results from "./Results";
+import Fetchingdata from "./components/Fetchingdata";
+
+const App = () => {
+  return (
+    <div className="flex flex-col min-h-screen h-full">
+      <Header />
+      <div className="flex-grow overflow-y-auto">
+        <Routes>
+          {/* <Route path="/" element={<Fetchingdata />} /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/get-started" element={<MultiStepForm />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+
+OUR RESULTS CARD 
+
+import React from "react";
+import PropTypes from "prop-types";
+
+const MovieCard = ({ movie, genres }) => {
+  const getGenreNames = (genreIds) => {
+    return genreIds
+      .map((id) => genres.find((g) => g.id === id)?.name)
+      .filter((name) => name)
+      .join(", ");
+  };
+
+  return (
+    <div className="card bg-white p-4 rounded-lg shadow-md">
+      <img
+        src={`https://image.tmdb.org/t/p/w154${movie.poster_path}`}
+        alt={movie.title}
+        className="w-full h-auto rounded-lg mb-2"
+      />
+      <div className="category">Genres: {getGenreNames(movie.genre_ids)}</div>
+      <div className="heading text-[#1E1C39]">
+        <h3 className="text-xl font-bold mb-2">{movie.title}</h3>
+        <div className="author text-md">
+          Rating: {movie.vote_average}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// PropTypes validation
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    genre_ids: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default MovieCard;
+
+
+step1.jsx
+
+import PropTypes from "prop-types";
+
+const Step1 = ({ formData, handleInputChange }) => {
+  return (
+    <div className="flex flex-col items-center mb-12">
+      <h2 className="text-2xl font-bold mb-4">How are you feeling today?</h2>
+      <div className="flex flex-col space-y-4 w-96">
+        <button
+          className={`bg-gray-200 py-3 px-6 rounded-md text-lg ${
+            formData.mood === "happy" ? "bg-blue-300" : ""
+          }`}
+          onClick={() => handleInputChange("mood", "happy")}
+        >
+          Happy
+        </button>
+        <button
+          className={`bg-gray-200 py-3 px-6 rounded-md text-lg ${
+            formData.mood === "sad" ? "bg-blue-300" : ""
+          }`}
+          onClick={() => handleInputChange("mood", "sad")}
+        >
+          Sad
+        </button>
+        <button
+          className={`bg-gray-200 py-3 px-6 rounded-md text-lg ${
+            formData.mood === "normal" ? "bg-blue-300" : ""
+          }`}
+          onClick={() => handleInputChange("mood", "normal")}
+        >
+          Normal
+        </button>
+      </div>
+    </div>
+  );
+};
+
+Step1.propTypes = {
+  formData: PropTypes.shape({
+    mood: PropTypes.string.isRequired,
+    occasion: PropTypes.string,
+    genre: PropTypes.string,
+  }).isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+};
+
+export default Step1;

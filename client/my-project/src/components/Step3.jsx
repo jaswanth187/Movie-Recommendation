@@ -2,39 +2,46 @@ import PropTypes from "prop-types";
 
 const Step3 = ({ formData, handleInputChange }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mb-12">
       <h2 className="text-2xl font-bold mb-4">
         Please choose any genre you’re interested in.
       </h2>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-4 w-96">
         <button
-          className={`bg-gray-200 py-2 px-4 rounded-md ${
-            formData.genre === "action" ? "bg-blue-300" : ""
-          }`}
+          style={{
+            backgroundColor:
+              formData.genre === "action" ? "#4FD1C5" : "#E5E7EB",
+          }}
+          className="bg-gray-200 py-2 px-4 rounded-md text-lg"
           onClick={() => handleInputChange("genre", "action")}
         >
           Action
         </button>
         <button
-          className={`bg-gray-200 py-2 px-4 rounded-md ${
-            formData.genre === "comedy" ? "bg-blue-300" : ""
-          }`}
+          style={{
+            backgroundColor:
+              formData.genre === "comedy" ? "#4FD1C5" : "#E5E7EB",
+          }}
+          className="bg-gray-200 py-2 px-4 rounded-md text-lg"
           onClick={() => handleInputChange("genre", "comedy")}
         >
           Comedy
         </button>
         <button
-          className={`bg-gray-200 py-2 px-4 rounded-md ${
-            formData.genre === "drama" ? "bg-blue-300" : ""
-          }`}
+          style={{
+            backgroundColor: formData.genre === "drama" ? "#4FD1C5" : "#E5E7EB",
+          }}
+          className="bg-gray-200 py-2 px-4 rounded-md text-lg"
           onClick={() => handleInputChange("genre", "drama")}
         >
           Drama
         </button>
         <button
-          className={`bg-gray-200 py-2 px-4 rounded-md ${
-            formData.genre === "horror" ? "bg-blue-300" : ""
-          }`}
+          style={{
+            backgroundColor:
+              formData.genre === "horror" ? "#4FD1C5" : "#E5E7EB",
+          }}
+          className="bg-gray-200 py-2 px-4 rounded-md text-lg"
           onClick={() => handleInputChange("genre", "horror")}
         >
           Horror
